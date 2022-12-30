@@ -32,5 +32,35 @@ namespace taofitAPI.Services
             _context.Foods.Add(_food);
             _context.SaveChanges();
         }
+
+        public Food GetFood(int foodId)
+        {   
+            return _context.Foods.Find(foodId);
+        }
+
+        public Food UpdateFood(int foodId, Food food)
+        {
+            var _food = _context.Foods.FirstOrDefault(f => f.FoodId == foodId);
+            if(_food != null)
+            {
+                _food.FoodName = food.FoodName;
+                _food.Amount = food.Amount;
+                _food.Calory = food.Calory;
+
+                _context.SaveChanges();
+            }
+
+            return _food;
+        }
+
+        public void DeleteFood(int foodId)
+        {
+            var _food = _context.Foods.FirstOrDefault(f => f.FoodId == foodId);
+            if(_food != null)
+            {
+                _context.Foods.Remove(_food);
+                _context.SaveChanges();
+            }
+        }
     }
 }
