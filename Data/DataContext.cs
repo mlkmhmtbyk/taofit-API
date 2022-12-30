@@ -12,5 +12,6 @@ namespace taofitAPI.Data
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
         public DbSet<Meal> Meals { get; set; }
+        public DbSet<Food> Foods { get; set; }
     }
 }

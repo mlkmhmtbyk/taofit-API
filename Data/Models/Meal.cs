@@ -9,6 +9,7 @@ namespace taofitAPI.Data.Models
     {
         public int MealId { get; set; }
         public string MealName { get; set; }
+        public List<Food> Foods { get; set; }
         public DateTime Time { get; set; }
     }
 }
