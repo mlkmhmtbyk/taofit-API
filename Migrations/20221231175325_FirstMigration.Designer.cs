@@ -12,8 +12,8 @@ using taofitAPI.Data;
 namespace taofitAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20221227234614_ConnectionStringReroll")]
-    partial class ConnectionStringReroll
+    [Migration("20221231175325_FirstMigration")]
+    partial class FirstMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,35 @@ namespace taofitAPI.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("taofitAPI.Data.Models.Food", b =>
+                {
+                    b.Property<int>("FoodId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FoodId"));
+
+                    b.Property<string>("Amount")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Calory")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FoodName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("MealId")
+                        .HasColumnType("int");
+
+                    b.HasKey("FoodId");
+
+                    b.HasIndex("MealId");
+
+                    b.ToTable("Foods");
+                });
 
             modelBuilder.Entity("taofitAPI.Data.Models.Meal", b =>
                 {
@@ -43,6 +72,18 @@ namespace taofitAPI.Migrations
                     b.HasKey("MealId");
 
                     b.ToTable("Meals");
+                });
+
+            modelBuilder.Entity("taofitAPI.Data.Models.Food", b =>
+                {
+                    b.HasOne("taofitAPI.Data.Models.Meal", null)
+                        .WithMany("Foods")
+                        .HasForeignKey("MealId");
+                });
+
+            modelBuilder.Entity("taofitAPI.Data.Models.Meal", b =>
+                {
+                    b.Navigation("Foods");
                 });
 #pragma warning restore 612, 618
         }

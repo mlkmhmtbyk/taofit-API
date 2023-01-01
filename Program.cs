@@ -14,6 +14,7 @@ builder.Services.AddDbContext<DataContext>(options =>
 
 //All services goes here
 builder.Services.AddTransient<FoodsService>();
+builder.Services.AddTransient<MealsService>();
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

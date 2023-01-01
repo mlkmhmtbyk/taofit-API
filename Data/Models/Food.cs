@@ -11,5 +11,7 @@ namespace taofitAPI.Data.Models
         public string FoodName { get; set; }
         public string Amount { get; set; }
         public int Calory { get; set; }
+
+        public int? MealId { get; set; }
     }
 }

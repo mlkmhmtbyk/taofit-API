@@ -9,7 +9,6 @@ namespace taofitAPI.Services
     public class FoodsService
     {
         private readonly DataContext _context;
-        
         public FoodsService(DataContext context)
         {
             _context = context;
@@ -26,7 +25,8 @@ namespace taofitAPI.Services
             {
                 FoodName = food.FoodName,
                 Amount = food.Amount,
-                Calory = food.Calory
+                Calory = food.Calory,
+                MealId = food.MealId
             };
 
             _context.Foods.Add(_food);
